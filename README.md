@@ -86,7 +86,7 @@ This will allow your project to fetch the necessary dependencies from the Axepti
 The Axeptio SDK supports **iOS versions 15.0 and higher**. To ensure compatibility with the SDK, make sure your project is set to support at least iOS 15.0. To check or update the minimum iOS version, open the `ios/Podfile` and ensure the following line is present:
 
 ```ruby
-platform :ios, '15.0'ç
+platform :ios, '15.0'
 ```
 This ensures that your app targets devices running iOS 15 or later.
 
@@ -97,9 +97,9 @@ To initialize the Axeptio SDK on app startup, select either **brands** or **publ
 final axeptioSdkPlugin = AxeptioSdk();
 await axeptioSdkPlugin.initialize(
     AxeptioService.brands, // Choose either brands or publishers
-    [your_client_id],  // Your client ID
-    [your_cookies_version],  // Version of your cookies policy
-    [optional_consent_token],  // Optionally pass a consent token for existing user consent
+    "your_client_id",  // Your client ID
+    "your_cookies_version",  // Version of your cookies policy
+    "optional_consent_token",  // Optionally pass a consent token for existing user consent
 );
 await axeptioSdkPlugin.setupUI();  // Setup the UI for consent management
 ```
