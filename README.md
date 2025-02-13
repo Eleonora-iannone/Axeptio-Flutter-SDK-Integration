@@ -6,19 +6,19 @@
 This repository demonstrates the integration of the **Axeptio Flutter SDK** into mobile applications, enabling seamless consent management for both [brands](https://support.axeptio.eu/hc/en-gb/articles/30431504788753-Geolocation) and [publishers](https://support.axeptio.eu/hc/en-gb/articles/23671149708945-1-Create-the-project), tailored to your specific requirements.
 
 # 📑 Table of Contents
-1. [Setup and Installation](#setup-and-installation)
+1. [Setup and Installation](#1-setup-and-installation)
    - [Android Setup](#android-setup)
    - [iOS Setup](#ios-setup)
-2. [SDK Initialization](#sdk-initialization)
-3. [App Tracking Transparency (ATT) Integration](#app-tracking-transparency-att-integration)
-4. [SDK and Mobile App Responsibilities](#sdk-and-mobile-app-responsibilities)
-5. [Retrieving and Managing Stored Consents](#retrieving-and-managing-stored-consents)
-6. [Displaying the Consent Popup on Demand](#displaying-the-consent-popup-on-demand)
-7. [Sharing Consents with Web Views](#sharing-consents-with-web-views)
-8. [Clearing User Consent](#clearing-user-consent)
-9. [Event Handling and Customization](#event-handling-and-customization)
+2. [SDK Initialization](#2-sdk-initialization)
+3. [App Tracking Transparency (ATT) Integration](#3-app-tracking-transparency-att-integration)
+4. [SDK and Mobile App Responsibilities](#4-sdk-and-mobile-app-responsibilities)
+5. [Retrieving and Managing Stored Consents](#5-retrieving-and-managing-stored-consents)
+6. [Displaying the Consent Popup on Demand](#6-displaying-the-consent-popup-on-demand)
+7. [Sharing Consents with Web Views](#7-sharing-consents-with-web-views)
+8. [Clearing User Consent](#8-clearing-user-consent)
+9. [Event Handling and Customization](#9-event-handling-and-customization)
 ***
-# 🚀Setup and Installation   
+# 1. 🚀Setup and Installation   
 To integrate the Axeptio SDK into your Flutter project, run the following command in your terminal:
 ```bash
 flutter pub add axeptio_sdk
@@ -91,7 +91,7 @@ platform :ios, '15.0'ç
 This ensures that your app targets devices running iOS 15 or later.
 
 ***
-# 🔧SDK Initialization
+# 2. 🔧SDK Initialization
 To initialize the Axeptio SDK on app startup, select either **brands** or **publishers** depending on your use case. The SDK is `initialized` through the AxeptioService enum and requires your `client_id`, `cookies_version`, and optionally a `consent_token`.
 ```dart
 final axeptioSdkPlugin = AxeptioSdk();
@@ -105,7 +105,7 @@ await axeptioSdkPlugin.setupUI();  // Setup the UI for consent management
 ```
 The **setupUI()** function will display the consent management UI once initialized.
 ***
-# App Tracking Transparency (ATT) Integration
+# 3. App Tracking Transparency (ATT) Integration
 The **Axeptio SDK** does not manage **App Tracking Transparency** (ATT) permissions. It is the responsibility of the host app to manage the **ATT** flow, ensuring that the user is prompted before consent management is handled by the SDK.
 #### Steps for Integrating ATT with Axeptio SDK:
 1. **Add Permission Description in `Info.plist`:**
@@ -142,7 +142,7 @@ try {
 }
 ```
 ***
-# SDK and Mobile App Responsibilities
+# 4. 🗂SDK and Mobile App Responsibilities
 
 The Axeptio SDK and your mobile application each have distinct responsibilities in the consent management process:
 
@@ -171,7 +171,7 @@ The Axeptio SDK and your mobile application each have distinct responsibilities 
 **Note:** The SDK does not manage ATT permissions. You must handle this separately as shown above.
 
 ***
-# 🗂️Retrieving and Managing Stored Consents
+# 5. Retrieving and Managing Stored Consents
 
 To retrieve stored consent choices, use **UserDefaults** (iOS) or **SharedPreferences** (Android) with the `shared_preferences` package.
 
@@ -185,7 +185,7 @@ SharedPreferences prefs = await SharedPreferences.getInstance();
 String userConsent = prefs.getString('axeptio_consent');
 ```
 ***
-# Displaying the Consent Popup on Demand
+# 6. Displaying the Consent Popup on Demand
 If needed, you can display the consent popup manually by calling the following method:
 ```dart
 axeptioSdk.showConsentScreen();
@@ -193,7 +193,7 @@ axeptioSdk.showConsentScreen();
 This is useful if you want to show the popup at a specific moment based on app flow or user behavior.
 
 ***
-# Sharing Consents with Web Views
+# 7. Sharing Consents with Web Views
 For **publishers**, the SDK provides a feature to share the user's consent status with web views by appending the **Axeptio token** as a query parameter.
 ```dart
 final token = await axeptioSdk.axeptioToken;
@@ -206,7 +206,7 @@ final url = await axeptioSdk.appendAxeptioTokenURL(
 This feature ensures that consent status is properly communicated across different parts of the application, including web content.
 ***
 
-# 🔄Clearing User Consent
+# 8. 🔄Clearing User Consent
 If necessary, you can clear the user’s consent choices by invoking the following method:
 ```dart
 axeptioSdk.clearConsent();
@@ -215,7 +215,7 @@ This will reset the consent status, allowing the user to be prompted for consent
 
 ***
 
-# Event Handling and Customization
+# 9. Event Handling and Customization
 The **Axeptio SDK** triggers various events that notify your app when the user takes specific actions related to consent. Use the `AxeptioEventListener` class to listen for these events and handle them as needed.
 #### Example Event Listener Implementation:
 ```dart
@@ -241,5 +241,5 @@ axeptioSdkPlugin.removeEventListener(listener);
 ***
 By following this guide, you'll be able to integrate the Axeptio Flutter SDK effectively into your app, providing comprehensive consent management and ensuring compliance with privacy regulations.
 
-For advanced configurations and further documentation, please refer to the official [Axeptio documentation](https://support.axeptio.eu/hc/en-gb ).
+For advanced configurations and further documentation, please refer to the official [Axeptio documentation](https://support.axeptio.eu/hc/en-gb).
 We hope this guide helps you get started with the Axeptio Flutter SDK. Good luck with your integration, and thank you for choosing Axeptio!
