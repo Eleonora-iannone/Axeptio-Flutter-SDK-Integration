@@ -3,8 +3,8 @@
   Axeptio Flutter SDK Documentation
 </h1>
 
-This repository demonstrates the integration of the **Axeptio Flutter SDK** into mobile applications, enabling seamless consent management for both [brands](https://support.axeptio.eu/hc/en-gb/articles/30431504788753-Geolocation) and [publishers](https://support.axeptio.eu/hc/en-gb/articles/23671149708945-1-Create-the-project), tailored to your specific requirements.
-
+This repository demonstrates the integration of the **Axeptio Flutter SDK** into mobile applications, enabling seamless consent management for both brands and publishers, tailored to your specific requirements.
+<br><br>
 # 📑 Table of Contents
 1. [Setup and Installation](#1-setup-and-installation)
    - [Android Setup](#android-setup)
@@ -17,7 +17,7 @@ This repository demonstrates the integration of the **Axeptio Flutter SDK** into
 7. [Sharing Consents with Web Views](#7-sharing-consents-with-web-views)
 8. [Clearing User Consent](#8-clearing-user-consent)
 9. [Event Handling and Customization](#9-event-handling-and-customization)
-***
+<br><br><br>
 # 1. 🚀Setup and Installation   
 To integrate the Axeptio SDK into your Flutter project, run the following command in your terminal:
 ```bash
@@ -32,7 +32,7 @@ dependencies:
     sdk: flutter
   axeptio_sdk: ^latest_version
 ```
-***
+
 ## Android Setup
 #### Minimum SDK Version
 To ensure compatibility with the Axeptio SDK, the **minimum SDK** version for your Flutter project must be set to **API level 26** (Android 8.0 Oreo) or higher. To verify and update this setting, open your project's `android/app/build.gradle` file and check the following:
@@ -90,7 +90,7 @@ platform :ios, '15.0'ç
 ```
 This ensures that your app targets devices running iOS 15 or later.
 
-***
+<br><br><br>
 # 2. 🔧SDK Initialization
 To initialize the Axeptio SDK on app startup, select either **brands** or **publishers** depending on your use case. The SDK is `initialized` through the AxeptioService enum and requires your `client_id`, `cookies_version`, and optionally a `consent_token`.
 ```dart
@@ -104,7 +104,7 @@ await axeptioSdkPlugin.initialize(
 await axeptioSdkPlugin.setupUI();  // Setup the UI for consent management
 ```
 The **setupUI()** function will display the consent management UI once initialized.
-***
+<br><br><br>
 # 3. App Tracking Transparency (ATT) Integration
 The **Axeptio SDK** does not manage **App Tracking Transparency** (ATT) permissions. It is the responsibility of the host app to manage the **ATT** flow, ensuring that the user is prompted before consent management is handled by the SDK.
 #### Steps for Integrating ATT with Axeptio SDK:
@@ -141,7 +141,7 @@ try {
   await axeptioSdkPlugin.setupUI();
 }
 ```
-***
+<br><br><br>
 # 4. 🗂SDK and Mobile App Responsibilities
 
 The Axeptio SDK and your mobile application each have distinct responsibilities in the consent management process:
@@ -170,7 +170,7 @@ The Axeptio SDK and your mobile application each have distinct responsibilities 
 
 **Note:** The SDK does not manage ATT permissions. You must handle this separately as shown above.
 
-***
+<br><br><br>
 # 5. Retrieving and Managing Stored Consents
 
 To retrieve stored consent choices, use **UserDefaults** (iOS) or **SharedPreferences** (Android) with the `shared_preferences` package.
@@ -184,7 +184,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 SharedPreferences prefs = await SharedPreferences.getInstance();
 String userConsent = prefs.getString('axeptio_consent');
 ```
-***
+<br><br><br>
 # 6. Displaying the Consent Popup on Demand
 If needed, you can display the consent popup manually by calling the following method:
 ```dart
@@ -192,7 +192,7 @@ axeptioSdk.showConsentScreen();
 ```
 This is useful if you want to show the popup at a specific moment based on app flow or user behavior.
 
-***
+<br><br><br>
 # 7. Sharing Consents with Web Views
 For **publishers**, the SDK provides a feature to share the user's consent status with web views by appending the **Axeptio token** as a query parameter.
 ```dart
@@ -204,7 +204,7 @@ final url = await axeptioSdk.appendAxeptioTokenURL(
 // Will return: https://myurl.com?axeptio_token=[token]
 ```
 This feature ensures that consent status is properly communicated across different parts of the application, including web content.
-***
+<br><br><br>
 
 # 8. 🔄Clearing User Consent
 If necessary, you can clear the user’s consent choices by invoking the following method:
@@ -213,7 +213,7 @@ axeptioSdk.clearConsent();
 ```
 This will reset the consent status, allowing the user to be prompted for consent again.
 
-***
+<br><br><br>
 
 # 9. Event Handling and Customization
 The **Axeptio SDK** triggers various events that notify your app when the user takes specific actions related to consent. Use the `AxeptioEventListener` class to listen for these events and handle them as needed.
@@ -238,7 +238,7 @@ var axeptioSdk = AxeptioSdk();
 axeptioSdkPlugin.addEventListener(listener);
 axeptioSdkPlugin.removeEventListener(listener);
 ```
-***
+<br><br><br>
 By following this guide, you'll be able to integrate the Axeptio Flutter SDK effectively into your app, providing comprehensive consent management and ensuring compliance with privacy regulations.
 
 For advanced configurations and further documentation, please refer to the official [Axeptio documentation](https://support.axeptio.eu/hc/en-gb).
